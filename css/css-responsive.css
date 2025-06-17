@@ -1,0 +1,752 @@
+/* Responsive Styles for ArtStudio Teen */
+
+/* Mobile First Approach */
+
+/* Extra Small Devices (phones, 320px and up) */
+@media (max-width: 480px) {
+  /* Header adjustments */
+  .header {
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .logo {
+    font-size: 1.2rem;
+  }
+  
+  .logo i {
+    font-size: 1.5rem;
+  }
+  
+  .header-buttons {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .btn-text {
+    display: none;
+  }
+  
+  /* App container - stack vertically */
+  .app-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    height: calc(100vh - 100px);
+  }
+  
+  /* Sidebar - horizontal on mobile */
+  .sidebar {
+    order: 3;
+    padding: 0.75rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    border-right: none;
+    border-top: 1px solid var(--border-color);
+    max-height: 120px;
+  }
+  
+  .tool-group {
+    display: inline-block;
+    margin-right: 1rem;
+    margin-bottom: 0;
+    vertical-align: top;
+  }
+  
+  .tool-group-title {
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .tool {
+    width: 40px;
+    height: 40px;
+    margin: 0.25rem;
+    font-size: 1rem;
+    display: inline-flex;
+  }
+  
+  /* Canvas area */
+  .canvas-area {
+    order: 1;
+    padding: 0.5rem;
+  }
+  
+  .canvas-container {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  #backgroundCanvas {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 50vh;
+  }
+  
+  /* Properties panel - overlay on mobile */
+  .properties {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    transition: right 0.3s ease;
+    order: 2;
+    padding: 1rem;
+    overflow-y: auto;
+    background: var(--surface-color);
+  }
+  
+  .properties.active {
+    right: 0;
+  }
+  
+  .property-group {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+  }
+  
+  /* Add mobile properties toggle button */
+  .mobile-properties-toggle {
+    position: fixed;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    z-index: 999;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+    display: none;
+  }
+  
+  /* Text art modal */
+  .text-art-panel {
+    margin: 0.5rem;
+    padding: 1.5rem;
+    max-height: 90vh;
+  }
+  
+  .font-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .font-option {
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+  
+  .text-style-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .text-style {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .text-style i {
+    font-size: 1.2rem;
+  }
+  
+  /* Color grid */
+  .color-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .color-swatch {
+    height: 35px;
+  }
+  
+  /* Teen templates */
+  .teen-template-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .teen-template {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  /* AR templates */
+  .ar-template-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .ar-template {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.7rem;
+  }
+  
+  /* Magic buttons */
+  .magic-btn {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+  
+  /* Quote container */
+  .quote-container {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    max-width: none;
+    padding: 1rem;
+  }
+  
+  .quote {
+    font-size: 1rem;
+  }
+  
+  .author {
+    font-size: 0.8rem;
+  }
+  
+  /* AR overlay */
+  .ar-controls {
+    bottom: 1rem;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  
+  .ar-controls .btn {
+    padding: 0.75rem 1rem;
+  }
+  
+  /* Accessibility panel */
+  .accessibility-panel {
+    width: 100%;
+    right: -100%;
+    padding: 1.5rem;
+  }
+  
+  /* Notifications */
+  .notification {
+    left: 1rem;
+    right: 1rem;
+    max-width: none;
+  }
+}
+
+/* Small Devices (landscape phones, 481px and up) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .header {
+    padding: 1rem 1.5rem;
+  }
+  
+  .app-container {
+    grid-template-columns: 70px 1fr;
+    grid-template-rows: 1fr auto;
+  }
+  
+  .sidebar {
+    order: 1;
+    padding: 1rem 0.5rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-right: 1px solid var(--border-color);
+    border-top: none;
+  }
+  
+  .tool-group {
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  
+  .tool {
+    width: 45px;
+    height: 45px;
+    margin: 0.5rem auto;
+    font-size: 1.1rem;
+  }
+  
+  .canvas-area {
+    order: 2;
+    grid-row: 1 / 3;
+  }
+  
+  #backgroundCanvas {
+    max-width: calc(100vw - 70px - 2rem);
+    max-height: calc(100vh - 120px);
+  }
+  
+  .properties {
+    position: fixed;
+    top: 80px;
+    right: -320px;
+    width: 300px;
+    height: calc(100vh - 80px);
+    z-index: 1000;
+    transition: right 0.3s ease;
+    order: 3;
+    border-left: 1px solid var(--border-color);
+  }
+  
+  .properties.active {
+    right: 0;
+  }
+  
+  .mobile-properties-toggle {
+    display: block;
+  }
+  
+  .teen-template-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .ar-template-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .color-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Medium Devices (tablets, 769px and up) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .app-container {
+    grid-template-columns: 75px 1fr 280px;
+  }
+  
+  .sidebar {
+    padding: 1rem 0.75rem;
+  }
+  
+  .tool {
+    width: 48px;
+    height: 48px;
+    font-size: 1.15rem;
+  }
+  
+  .properties {
+    padding: 1.25rem;
+    position: static;
+    width: auto;
+    height: auto;
+  }
+  
+  .mobile-properties-toggle {
+    display: none;
+  }
+  
+  #backgroundCanvas {
+    max-width: calc(100vw - 75px - 280px - 2rem);
+    max-height: calc(100vh - 100px);
+  }
+  
+  .text-art-panel {
+    max-width: 450px;
+  }
+  
+  .quote-container {
+    max-width: 280px;
+  }
+}
+
+/* Large Devices (desktops, 1025px and up) */
+@media (min-width: 1025px) {
+  .app-container {
+    grid-template-columns: 80px 1fr 300px;
+  }
+  
+  .properties {
+    position: static;
+    width: auto;
+    height: auto;
+  }
+  
+  .mobile-properties-toggle {
+    display: none;
+  }
+  
+  #backgroundCanvas {
+    max-width: calc(100vw - 80px - 300px - 2rem);
+    max-height: calc(100vh - 100px);
+  }
+}
+
+/* Extra Large Devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .app-container {
+    grid-template-columns: 90px 1fr 320px;
+  }
+  
+  .sidebar {
+    padding: 1.5rem 1rem;
+  }
+  
+  .tool {
+    width: 55px;
+    height: 55px;
+    font-size: 1.3rem;
+  }
+  
+  .properties {
+    padding: 2rem;
+  }
+  
+  .property-group {
+    padding: 1.75rem;
+  }
+  
+  #backgroundCanvas {
+    max-width: calc(100vw - 90px - 320px - 2rem);
+  }
+  
+  .quote-container {
+    max-width: 350px;
+    padding: 2rem;
+  }
+  
+  .quote {
+    font-size: 1.2rem;
+  }
+}
+
+/* Ultra Wide Screens (1400px and up) */
+@media (min-width: 1400px) {
+  .app-container {
+    grid-template-columns: 100px 1fr 350px;
+  }
+  
+  .canvas-area {
+    padding: 2rem;
+  }
+  
+  #backgroundCanvas {
+    max-width: calc(100vw - 100px - 350px - 4rem);
+  }
+}
+
+/* Landscape Orientation Adjustments */
+@media (orientation: landscape) and (max-height: 600px) {
+  .header {
+    padding: 0.5rem 1rem;
+  }
+  
+  .logo {
+    font-size: 1.1rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+  
+  .app-container {
+    height: calc(100vh - 60px);
+  }
+  
+  .quote-container {
+    display: none;
+  }
+  
+  .properties {
+    padding: 1rem;
+  }
+  
+  .property-group {
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+  
+  .tool {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .tool,
+  .btn,
+  .color-swatch,
+  .magic-btn,
+  .teen-template,
+  .ar-template {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .tool:hover,
+  .btn:hover,
+  .color-swatch:hover,
+  .magic-btn:hover {
+    transform: none;
+  }
+  
+  .tool:active,
+  .btn:active,
+  .color-swatch:active,
+  .magic-btn:active {
+    transform: scale(0.95);
+  }
+  
+  .slider::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .canvas-container {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  #backgroundCanvas {
+    image-rendering: pixelated;
+  }
+}
+
+/* Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .tool.active::after {
+    animation: none;
+  }
+  
+  .loading-spinner {
+    animation: none;
+  }
+  
+  .progress-fill::after {
+    animation: none;
+  }
+}
+
+/* Dark Mode Preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #0f172a;
+    --surface-color: #1e293b;
+    --text-color: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border-color: #334155;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* High Contrast Preference */
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: #000000;
+    --shadow-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .tool,
+  .btn,
+  .color-swatch {
+    border-width: 2px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .header,
+  .sidebar,
+  .properties,
+  .quote-container,
+  .mobile-properties-toggle,
+  .ar-overlay,
+  .text-art-modal,
+  .accessibility-panel,
+  .notification {
+    display: none !important;
+  }
+  
+  .app-container {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  
+  .canvas-area {
+    padding: 0;
+    background: white;
+  }
+  
+  .canvas-container {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+  
+  #backgroundCanvas {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Specific Mobile Breakpoints */
+
+/* iPhone SE and similar small screens */
+@media (max-width: 375px) {
+  .header {
+    padding: 0.5rem;
+  }
+  
+  .logo {
+    font-size: 1rem;
+  }
+  
+  .btn {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .tool {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+  
+  .text-art-panel {
+    margin: 0.25rem;
+    padding: 1rem;
+  }
+  
+  .property-group {
+    padding: 0.75rem;
+  }
+}
+
+/* Foldable devices and very wide screens */
+@media (min-width: 1600px) {
+  .app-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    grid-template-columns: 120px 1fr 400px;
+  }
+  
+  .canvas-area {
+    padding: 3rem;
+  }
+  
+  .properties {
+    padding: 2.5rem;
+  }
+  
+  .quote-container {
+    max-width: 400px;
+    padding: 2.5rem;
+  }
+}
+
+/* Accessibility - Large Text Support */
+@media (min-width: 768px) {
+  .large-text {
+    font-size: 1.2em;
+  }
+  
+  .large-text .btn {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .large-text .tool {
+    width: 60px;
+    height: 60px;
+    font-size: 1.4rem;
+  }
+  
+  .large-text .property-title {
+    font-size: 1.3rem;
+  }
+}
+
+/* Container Queries (for modern browsers) */
+@supports (container-type: inline-size) {
+  .properties {
+    container-type: inline-size;
+  }
+  
+  @container (max-width: 250px) {
+    .color-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .teen-template-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .ar-template-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+/* Mobile Properties Toggle Button (shown on mobile/tablet) */
+@media (max-width: 1024px) {
+  .mobile-properties-toggle {
+    display: block;
+  }
+}
+
+/* Ensure canvas is always visible and properly sized */
+@media (max-width: 768px) {
+  .canvas-area {
+    min-height: 300px;
+  }
+  
+  #backgroundCanvas {
+    min-width: 280px;
+    min-height: 200px;
+  }
+}
+
+/* Very small screens - optimize for usability */
+@media (max-width: 320px) {
+  .header-buttons {
+    justify-content: center;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  
+  .btn-text {
+    display: none;
+  }
+  
+  .color-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .text-style-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ar-template-grid {
+    grid-template-columns: 1fr;
+  }
+}
