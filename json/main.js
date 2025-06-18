@@ -6,7 +6,7 @@ class InklingsArtStudioApp {
   constructor() {
     this.canvas = document.getElementById('backgroundCanvas');
     this.ctx = this.canvas.getContext('2d');
-    
+
     // Initialize state
     this.currentTool = 'brush';
     this.currentMode = 'draw';
@@ -16,7 +16,7 @@ class InklingsArtStudioApp {
     this.undoStack = [];
     this.redoStack = [];
     this.maxUndoSteps = 20;
-    
+
     // Settings
     this.settings = {
       brushSize: 10,
@@ -30,87 +30,87 @@ class InklingsArtStudioApp {
       gridEnabled: false,
       autoSave: true
     };
-    
+
     // Initialize modules
     this.effects = new Effects(this.canvas);
     this.textArt = new TextArt(this.canvas);
     this.arStencils = new ARStencils(this.canvas);
     this.gallery = new Gallery();
-    
+
     // Set up canvas
     this.setupCanvas();
-    
+
     // Set up event listeners
     this.setupEventListeners();
-    
+
     // Load settings
     this.loadSettings();
-    
+
     // Show welcome message
     this.showWelcomeMessage();
-    
+
     console.log('🎨 Inklings Art Studio Pro initialized!');
   }
-  
+
   setupCanvas() {
     // Set initial background
     this.ctx.fillStyle = this.settings.backgroundColor;
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-    
+
     // Configure for high DPI displays
     this.configureHighDPI();
   }
-  
+
   configureHighDPI() {
     // Get the device pixel ratio
     const dpr = window.devicePixelRatio || 1;
-    
+
     // Get the size of the canvas in CSS pixels
     const rect = this.canvas.getBoundingClientRect();
-    
+
     // Set the canvas width and height taking into account the device pixel ratio
     if (dpr > 1 && rect.width > 0) {
       const oldWidth = this.canvas.width;
       const oldHeight = this.canvas.height;
-      
+
       // Save current canvas state
       const imageData = this.ctx.getImageData(0, 0, oldWidth, oldHeight);
-      
+
       // Resize canvas
       this.canvas.width = rect.width * dpr;
       this.canvas.height = rect.height * dpr;
-      
+
       // Scale the context
       this.ctx.scale(dpr, dpr);
-      
+
       // Restore the canvas state
       this.ctx.putImageData(imageData, 0, 0);
-      
+
       // Update settings
       this.settings.canvasWidth = this.canvas.width;
       this.settings.canvasHeight = this.canvas.height;
     }
   }
-  
+
   setupEventListeners() {
     // Canvas drawing events
     this.canvas.addEventListener('mousedown', this.handleMouseDown.bind(this));
     this.canvas.addEventListener('mousemove', this.handleMouseMove.bind(this));
     this.canvas.addEventListener('mouseup', this.handleMouseUp.bind(this));
     this.canvas.addEventListener('mouseout', this.handleMouseUp.bind(this));
-    
+
     // Touch events
     this.canvas.addEventListener('touchstart', this.handleTouchStart.bind(this));
     this.canvas.addEventListener('touchmove', this.handleTouchMove.bind(this));
     this.canvas.addEventListener('touchend', this.handleTouchEnd.bind(this));
-    
+
     // Tool selection
     document.querySelectorAll('[data-tool]').forEach(tool => {
       tool.addEventListener('click', () => {
         this.setTool(tool.dataset.tool);
       });
     });
-    
+
     // Brush size slider
     const brushSizeSlider = document.getElementById('brushSize');
     if (brushSizeSlider) {
@@ -119,7 +119,7 @@ class InklingsArtStudioApp {
         document.getElementById('brushSizeValue').textContent = brushSizeSlider.value;
       });
     }
-    
+
     // Brush opacity slider
     const brushOpacitySlider = document.getElementById('brushOpacity');
     if (brushOpacitySlider) {
@@ -128,7 +128,7 @@ class InklingsArtStudioApp {
         document.getElementById('brushOpacityValue').textContent = brushOpacitySlider.value;
       });
     }
-    
+
     // Brush hardness slider
     const brushHardnessSlider = document.getElementById('brushHardness');
     if (brushHardnessSlider) {
@@ -137,7 +137,7 @@ class InklingsArtStudioApp {
         document.getElementById('brushHardnessValue').textContent = brushHardnessSlider.value;
       });
     }
-    
+
     // Color picker
     const colorPicker = document.getElementById('colorPicker');
     if (colorPicker) {
@@ -146,7 +146,7 @@ class InklingsArtStudioApp {
         this.updateColorPreview();
       });
     }
-    
+
     // Color swatches
     document.querySelectorAll('.color-swatch').forEach(swatch => {
       swatch.addEventListener('click', () => {
@@ -167,7 +167,7 @@ class InklingsArtStudioApp {
         this.updateColorPreview();
       });
     });
-    
+
     // Magic effects
     document.querySelectorAll('.magic-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -175,7 +175,7 @@ class InklingsArtStudioApp {
         this.setActiveEffect(effect, btn);
       });
     });
-    
+
     // Teen templates
     document.querySelectorAll('.teen-template').forEach(template => {
       template.addEventListener('click', () => {
@@ -183,7 +183,7 @@ class InklingsArtStudioApp {
         this.applyTemplate(templateName);
       });
     });
-    
+
     // AR templates
     document.querySelectorAll('.ar-template').forEach(template => {
       template.addEventListener('click', () => {
@@ -191,7 +191,7 @@ class InklingsArtStudioApp {
         this.setARTemplate(templateName);
       });
     });
-    
+
     // AR settings
     const arOpacitySlider = document.getElementById('arOpacity');
     if (arOpacitySlider) {
@@ -199,95 +199,95 @@ class InklingsArtStudioApp {
         this.updateARSetting('opacity', arOpacitySlider.value);
       });
     }
-    
+
     const arSizeSlider = document.getElementById('arSize');
     if (arSizeSlider) {
       arSizeSlider.addEventListener('input', () => {
         this.updateARSetting('size', arSizeSlider.value);
       });
     }
-    
+
     // Window resize
     window.addEventListener('resize', Utils.debounce(() => {
       this.configureHighDPI();
     }, 250));
-    
+
     // Keyboard shortcuts
     document.addEventListener('keydown', this.handleKeyDown.bind(this));
-    
+
     // Update quote
     this.updateQuote();
   }
-  
+
   handleMouseDown(e) {
     if (this.currentMode !== 'draw') return;
-    
+
     this.isDrawing = true;
     const pos = Utils.getMousePos(this.canvas, e);
     this.lastX = pos.x;
     this.lastY = pos.y;
-    
+
     // Save state for undo
     this.saveState();
-    
+
     // Start drawing
     this.draw(pos.x, pos.y, false);
   }
-  
+
   handleMouseMove(e) {
     if (this.currentMode !== 'draw' || !this.isDrawing) return;
-    
+
     const pos = Utils.getMousePos(this.canvas, e);
     this.draw(pos.x, pos.y, true);
     this.lastX = pos.x;
     this.lastY = pos.y;
   }
-  
+
   handleMouseUp() {
     this.isDrawing = false;
-    
+
     // Auto-save if enabled
     if (this.settings.autoSave) {
       this.autoSave();
     }
   }
-  
+
   handleTouchStart(e) {
     e.preventDefault();
     if (this.currentMode !== 'draw') return;
-    
+
     this.isDrawing = true;
     const pos = Utils.getTouchPos(this.canvas, e);
     this.lastX = pos.x;
     this.lastY = pos.y;
-    
+
     // Save state for undo
     this.saveState();
-    
+
     // Start drawing
     this.draw(pos.x, pos.y, false);
   }
-  
+
   handleTouchMove(e) {
     e.preventDefault();
     if (this.currentMode !== 'draw' || !this.isDrawing) return;
-    
+
     const pos = Utils.getTouchPos(this.canvas, e);
     this.draw(pos.x, pos.y, true);
     this.lastX = pos.x;
     this.lastY = pos.y;
   }
-  
+
   handleTouchEnd(e) {
     e.preventDefault();
     this.isDrawing = false;
-    
+
     // Auto-save if enabled
     if (this.settings.autoSave) {
       this.autoSave();
     }
   }
-  
+
   handleKeyDown(e) {
     // Keyboard shortcuts
     if (e.ctrlKey || e.metaKey) {
@@ -342,7 +342,7 @@ class InklingsArtStudioApp {
       }
     }
   }
-  
+
   draw(x, y, isMoving) {
     switch (this.currentTool) {
       case 'brush':
@@ -377,7 +377,7 @@ class InklingsArtStudioApp {
         break;
     }
   }
-  
+
   drawBrush(x, y, isMoving) {
     const ctx = this.ctx;
     const size = this.settings.brushSize;
@@ -720,7 +720,7 @@ class InklingsArtStudioApp {
     // Update theme icon
     const themeIcon = document.getElementById('themeIcon');
     if (themeIcon) {
-      themeIcon.className = newTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+      themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
     }
     
     // Save theme preference
@@ -1018,5 +1018,19 @@ class InklingsArtStudioApp {
     );
   }
   
+  toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  }
   
+  toggleAR() {
+    if (this.currentMode === 'ar') {
+      this.setMode('draw');
+    } else {
+      this.setMode('ar');
+    
+
 
