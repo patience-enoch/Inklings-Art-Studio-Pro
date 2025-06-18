@@ -1,4 +1,5 @@
-// AR Stencils System for ArtStudio Teen
+
+// AR Stencils System for Inklings Art Studio Pro
 
 class ARStencils {
   constructor(canvas) {
@@ -231,7 +232,7 @@ class ARStencils {
       flower: {
         name: 'Flower Pattern',
         category: 'nature',
-        icon: 'fas fa-flower',
+        icon: 'fas fa-leaf',
         description: 'Beautiful flower guide',
         paths: [
           // Center
@@ -655,4 +656,4 @@ class ARStencils {
 }
 
 // Export for use in other modules
-window.ARStencils = ARStencils;
+window.AR
