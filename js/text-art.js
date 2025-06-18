@@ -505,7 +505,7 @@ class TextArt {
 
   shakeEffect(text, x, y) {
     const shakeX = x + (Math.random() - 0.5) * 4;
-    const shakeY = y + Math.random() - 0.5) * 4;
+    const shakeY = y + (Math.random() - 0.5) * 4;
     
     this.ctx.save();
     this.ctx.fillStyle = this.currentColor;
@@ -552,5 +552,4 @@ class TextArt {
 
 // Export for use in other modules
 window.TextArt = TextArt;
-
 
