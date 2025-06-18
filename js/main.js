@@ -1,3 +1,4 @@
+
 /**
  * Main Application for Inklings Art Studio Pro
  */
@@ -720,7 +721,7 @@ class InklingsArtStudioApp {
     // Update theme icon
     const themeIcon = document.getElementById('themeIcon');
     if (themeIcon) {
-      themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+      themeIcon.className = newTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
     }
     
     // Save theme preference
@@ -953,84 +954,4 @@ class InklingsArtStudioApp {
       }
       
       if (localStorage.getItem('inklings-large-buttons') === 'true') {
-        document.body.classList.add('large-buttons');
-        document.getElementById('largeButtonsToggle')?.classList.add('active');
-      }
-    } catch (error) {
-      console.warn('Failed to load settings:', error);
-    }
-  }
-  
-  // Auto-save functionality
-  autoSave() {
-    if (!this.settings.autoSave) return;
-    
-    try {
-      const imageData = this.canvas.toDataURL('image/png');
-      localStorage.setItem('inklings-autosave', imageData);
-      localStorage.setItem('inklings-autosave-timestamp', Date.now().toString());
-    } catch (error) {
-      console.warn('Auto-save failed:', error);
-    }
-  }
-  
-  loadAutoSave() {
-    try {
-      const imageData = localStorage.getItem('inklings-autosave');
-      const timestamp = localStorage.getItem('inklings-autosave-timestamp');
-      
-      if (imageData && timestamp) {
-        const age = Date.now() - parseInt(timestamp);
-        const maxAge = 24 * 60 * 60 * 1000; // 24 hours
-        
-        if (age < maxAge) {
-          const img = new Image();
-          img.onload = () => {
-            this.ctx.drawImage(img, 0, 0);
-            Utils.showNotification('Auto-saved work restored', 'info');
-          };
-          img.src = imageData;
-        }
-      }
-    } catch (error) {
-      console.warn('Failed to load auto-save:', error);
-    }
-  }
-  
-  // Utility methods
-  hasUnsavedChanges() {
-    // Simple check - in a real app, you'd track changes more precisely
-    return this.undoStack.length > 0;
-  }
-  
-  toggleTool() {
-    const tools = ['brush', 'eraser'];
-    const currentIndex = tools.indexOf(this.currentTool);
-    const nextIndex = (currentIndex + 1) % tools.length;
-    this.setTool(tools[nextIndex]);
-  }
-  
-  toggleGrid() {
-    // Grid implementation would go here
-    Utils.showNotification(
-      this.settings.gridEnabled ? 'Grid enabled' : 'Grid disabled',
-      'info'
-    );
-  }
-  
-  toggleFullscreen() {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-    } else {
-      document.exitFullscreen();
-    }
-  }
-  
-  toggleAR() {
-    if (this.currentMode === 'ar') {
-      this.setMode('draw');
-    } else {
-      this.setMode('ar');
-    
-
-
+        document.body.classList.add('large
