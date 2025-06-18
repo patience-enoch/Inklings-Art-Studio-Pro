@@ -1,4 +1,3 @@
-13. Fixed text-art.js
 
 // Text Art System for Inklings Art Studio Pro
 
@@ -506,7 +505,7 @@ class TextArt {
 
   shakeEffect(text, x, y) {
     const shakeX = x + (Math.random() - 0.5) * 4;
-    const shakeY = y + (Math.random() - 0.5) * 4;
+    const shakeY = y + Math.random() - 0.5) * 4;
     
     this.ctx.save();
     this.ctx.fillStyle = this.currentColor;
