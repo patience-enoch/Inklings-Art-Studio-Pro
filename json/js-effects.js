@@ -1,4 +1,4 @@
-// Magical Effects for ArtStudio Teen
+// Magical Effects for Inklings Art Studio Pro
 
 class Effects {
   constructor(canvas) {
@@ -605,6 +605,11 @@ class Effects {
       const color = Utils.getRandomColor();
       this.bubbleBrush(x, y, size, color, 0.3);
     }
+  }
+
+  // Cleanup
+  destroy() {
+    this.stopAnimation();
   }
 }
 
