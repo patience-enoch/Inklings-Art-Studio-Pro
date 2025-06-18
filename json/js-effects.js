@@ -1,7 +1,4 @@
-Okay, I have the updated `ar-system.js` file.
 
-
-18. Fixed effects.js
 
 // Magical Effects for Inklings Art Studio Pro
 
