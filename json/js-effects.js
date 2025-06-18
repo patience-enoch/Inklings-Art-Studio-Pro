@@ -1,3 +1,8 @@
+Okay, I have the updated `ar-system.js` file.
+
+
+18. Fixed effects.js
+
 // Magical Effects for Inklings Art Studio Pro
 
 class Effects {
@@ -615,3 +620,6 @@ class Effects {
 
 // Export for use in other modules
 window.Effects = Effects;
+
+
+
