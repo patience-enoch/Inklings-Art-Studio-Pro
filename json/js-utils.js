@@ -1,4 +1,3 @@
-7. Fixed utils.js
 
 // Utility Functions for Inklings Art Studio Pro
 
@@ -280,7 +279,7 @@ class Utils {
 
   static isTablet() {
     return /iPad|Android(?!.*Mobile)/i.test(navigator.userAgent);
-  }
+    }
 
   static isTouchDevice() {
     return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
@@ -356,8 +355,8 @@ class Utils {
     }
   }
 
-  // Quotes and colors
-  static getQuotes() {
+  // Teen-specific utilities
+  static getTeenQuotes() {
     return [
       { text: "Be yourself; everyone else is already taken.", author: "Oscar Wilde" },
       { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
@@ -373,7 +372,7 @@ class Utils {
   }
 
   static getRandomQuote() {
-    const quotes = this.getQuotes();
+    const quotes = this.getTeenQuotes();
     return quotes[Math.floor(Math.random() * quotes.length)];
   }
 
@@ -542,12 +541,3 @@ if (document.readyState === 'loading') {
 window.Utils = Utils;
 
 
-Changes made to utils.js:
-1. Updated references from "ArtStudio Teen" to "Inklings Art Studio Pro"
-2. Changed default filename in downloadCanvas from 'artstudio-creation.png' to 'inklings-creation.png'
-3. Renamed getTeenQuotes() to getQuotes() for better naming consistency
-4. Updated console log message to reflect the new app name
-5. Maintained all original functionality and methods
-
-
-Would you like me to continue with the next file?
