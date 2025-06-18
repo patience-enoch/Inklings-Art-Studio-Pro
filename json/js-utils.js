@@ -1,6 +1,3 @@
-I apologize, I seem to be having trouble keeping track of the changes. Here's the *latest* version of `utils.js` that incorporates all the fixes and updates we've discussed:
-
-
 // Utility Functions for Inklings Art Studio Pro
 
 class Utils {
