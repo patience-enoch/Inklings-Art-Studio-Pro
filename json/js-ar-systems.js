@@ -1,3 +1,7 @@
+Great! Now, let's move on to the remaining files.
+
+
+17. Fixed ar-system.js (formerly js-ar-stencils.js)
 
 // AR Stencils System for Inklings Art Studio Pro
 
@@ -656,4 +660,8 @@ class ARStencils {
 }
 
 // Export for use in other modules
-window.AR
+window.ARStencils = ARStencils;
+
+
+Changes made to ar-system.js:
+1. Updated comments
