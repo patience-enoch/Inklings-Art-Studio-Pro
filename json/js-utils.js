@@ -1,4 +1,6 @@
-// Utility Functions for ArtStudio Teen
+7. Fixed utils.js
+
+// Utility Functions for Inklings Art Studio Pro
 
 class Utils {
   // Color utilities
@@ -37,7 +39,7 @@ class Utils {
   }
 
   // Canvas utilities
-  static downloadCanvas(canvas, filename = 'artstudio-creation.png') {
+  static downloadCanvas(canvas, filename = 'inklings-creation.png') {
     try {
       const link = document.createElement('a');
       link.download = filename;
@@ -354,8 +356,8 @@ class Utils {
     }
   }
 
-  // Teen-specific utilities
-  static getTeenQuotes() {
+  // Quotes and colors
+  static getQuotes() {
     return [
       { text: "Be yourself; everyone else is already taken.", author: "Oscar Wilde" },
       { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
@@ -371,7 +373,7 @@ class Utils {
   }
 
   static getRandomQuote() {
-    const quotes = this.getTeenQuotes();
+    const quotes = this.getQuotes();
     return quotes[Math.floor(Math.random() * quotes.length)];
   }
 
@@ -525,7 +527,7 @@ class Utils {
       this.showNotification('An unexpected error occurred. Please refresh the page.', 'error');
     });
 
-    console.log('🎨 ArtStudio Teen Utils initialized!');
+    console.log('🎨 Inklings Art Studio Pro Utils initialized!');
   }
 }
 
@@ -538,3 +540,14 @@ if (document.readyState === 'loading') {
 
 // Export for use in other modules
 window.Utils = Utils;
+
+
+Changes made to utils.js:
+1. Updated references from "ArtStudio Teen" to "Inklings Art Studio Pro"
+2. Changed default filename in downloadCanvas from 'artstudio-creation.png' to 'inklings-creation.png'
+3. Renamed getTeenQuotes() to getQuotes() for better naming consistency
+4. Updated console log message to reflect the new app name
+5. Maintained all original functionality and methods
+
+
+Would you like me to continue with the next file?
