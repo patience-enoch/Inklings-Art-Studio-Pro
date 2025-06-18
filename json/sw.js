@@ -1,6 +1,7 @@
 const CACHE_NAME = 'inklings-art-studio-pro-v1';
 const urlsToCache = [
   '/',
+  '/index.html',
   '/css/main.css',
   '/css/components.css',
   '/css/themes.css',
@@ -111,5 +112,15 @@ self.addEventListener('push', function(event) {
   };
 
   event.waitUntil(
-    self.registration.showNotification
+    self.registration.showNotification('Inklings Art Studio Pro', options)
+  );
+});
 
+// Notification click handling
+self.addEventListener('notificationclick', function(event) {
+  console.log('Inklings Art Studio Pro notification click received.');
+  event.notification.close();
+  event.waitUntil(
+    clients.openWindow('/')
+  );
+});
