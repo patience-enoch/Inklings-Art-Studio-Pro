@@ -59,6 +59,7 @@ class InklingsArtStudioApp {
 
     // Configure for high DPI displays
     this.configureHighDPI();
+    console.log('Canvas context:', this.ctx);
   }
 
   configureHighDPI() {
