@@ -63,16 +63,22 @@ class InklingsArtStudioApp {
   }
 
   configureHighDPI() {
-    // Get the device pixel ratio
-    const dpr = window.devicePixelRatio || 1;
-
-    // Get the size of the canvas in CSS pixels
-    const rect = this.canvas.getBoundingClientRect();
-
-    // Set the canvas width and height taking into account the device pixel ratio
-    if (dpr > 1 && rect.width > 0) {
-      const oldWidth = this.canvas.width;
-      const oldHeight = this.canvas.height;
+  const dpr = window.devicePixelRatio || 1;
+  const rect = this.canvas.getBoundingClientRect();
+  
+  // Set display size (css pixels)
+  this.canvas.style.width = rect.width + 'px';
+  this.canvas.style.height = rect.height + 'px';
+  
+  // Set actual size in memory (scaled for high DPI)
+  this.canvas.width = rect.width * dpr;
+  this.canvas.height = rect.height * dpr;
+  
+  // Scale all drawing operations by the dpr
+  this.ctx.scale(dpr, dpr);
+  
+  console.log('Canvas configured for high DPI:', dpr);
+}
 
       // Save current canvas state
       const imageData = this.ctx.getImageData(0, 0, oldWidth, oldHeight);
