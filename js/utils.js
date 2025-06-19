@@ -139,11 +139,7 @@ class Utils {
   }
 
   // Local storage utilities
-  static saveToStorage(key, data) {
-    try {
-      localStorage.setItem(key, JSON.stringify(data));
-      return true
-        static saveToStorage(key, data) {
+    static saveToStorage(key, data) {
     try {
       localStorage.setItem(key, JSON.stringify(data));
       return true;
