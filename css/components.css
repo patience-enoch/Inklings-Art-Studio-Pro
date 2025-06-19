@@ -766,4 +766,59 @@
   }
 }
 
+/* Font loading optimizations */
+@font-face {
+  font-family: 'Dancing Script';
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pacifico';
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Great Vibes';
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satisfy';
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kalam';
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Caveat';
+  font-display: swap;
+}
+
+/* Add fallback fonts to improve rendering */
+.font-option[data-font="Dancing Script"] {
+  font-family: 'Dancing Script', cursive, serif;
+}
+
+.font-option[data-font="Pacifico"] {
+  font-family: 'Pacifico', cursive, serif;
+}
+
+.font-option[data-font="Great Vibes"] {
+  font-family: 'Great Vibes', cursive, serif;
+}
+
+.font-option[data-font="Satisfy"] {
+  font-family: 'Satisfy', cursive, serif;
+}
+
+.font-option[data-font="Kalam"] {
+  font-family: 'Kalam', cursive, sans-serif;
+}
+
+.font-option[data-font="Caveat"] {
+  font-family: 'Caveat', cursive, sans-serif;
+}
 
