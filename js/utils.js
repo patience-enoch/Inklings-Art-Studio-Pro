@@ -1,6 +1,3 @@
-Here's your HTML file with updated favicon paths:
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
