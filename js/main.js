@@ -954,9 +954,8 @@ class InklingsArtStudioApp {
       
       if (localStorage.getItem('inklings-reduced-motion') === 'true') {
         document.body.classList.add('reduced-motion');
+      }
         
-Here's the continuation of your fixed main.js code:
-
 
       if (localStorage.getItem('inklings-reduced-motion') === 'true') {
         document.body.classList.add('reduced-motion');
