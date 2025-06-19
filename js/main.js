@@ -91,7 +91,10 @@ class InklingsArtStudioApp {
       this.settings.canvasWidth = this.canvas.width;
       this.settings.canvasHeight = this.canvas.height;
     }
-  }
+    console.log('Canvas dimensions:', this.canvas.width, this.canvas.height);
+console.log('Canvas CSS dimensions:', this.canvas.clientWidth, this.canvas.clientHeight);
+console.log('Device pixel ratio:', window.devicePixelRatio);
+   }
 
   setupEventListeners() {
 
