@@ -93,11 +93,16 @@ class InklingsArtStudioApp {
   }
 
   setupEventListeners() {
-    // Canvas drawing events
-    this.canvas.addEventListener('mousedown', this.handleMouseDown.bind(this));
-    this.canvas.addEventListener('mousemove', this.handleMouseMove.bind(this));
-    this.canvas.addEventListener('mouseup', this.handleMouseUp.bind(this));
-    this.canvas.addEventListener('mouseout', this.handleMouseUp.bind(this));
+
+    this.canvas.addEventListener('mousedown', (e) => {
+    console.log('Canvas mousedown detected', e.clientX, e.clientY);
+});
+
+      // Canvas drawing events
+this.canvas.addEventListener('mousedown', this.handleMouseDown.bind(this));
+this.canvas.addEventListener('mousemove', this.handleMouseMove.bind(this));
+this.canvas.addEventListener('mouseup', this.handleMouseUp.bind(this));
+this.canvas.addEventListener('mouseout', this.handleMouseUp.bind(this));
 
     // Touch events
     this.canvas.addEventListener('touchstart', this.handleTouchStart.bind(this));
@@ -956,7 +961,6 @@ class InklingsArtStudioApp {
         document.body.classList.add('reduced-motion');
       }
         
-
       if (localStorage.getItem('inklings-reduced-motion') === 'true') {
         document.body.classList.add('reduced-motion');
         document.getElementById('reducedMotionToggle')?.classList.add('active');
