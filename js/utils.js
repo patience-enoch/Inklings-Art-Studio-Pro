@@ -138,8 +138,8 @@ class Utils {
     };
   }
 
-  // Local storage utilities
-    static saveToStorage(key, data) {
+    // Local storage utilities
+    static saveToStorage(key, data) {  
     try {
       localStorage.setItem(key, JSON.stringify(data));
       return true;
@@ -148,6 +148,7 @@ class Utils {
       return false;
     }
   }
+
 
   static loadFromStorage(key, defaultValue = null) {
     try {
