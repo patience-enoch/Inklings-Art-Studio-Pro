@@ -120,8 +120,44 @@ class ARStencils {
   }
 }
 
+/**
+ * Toggle AR mode on/off
+ * This function is called directly from HTML button onclick
+ */
+function toggleAR() {
+  const arOverlay = document.getElementById('arOverlay');
+  const arSettings = document.getElementById('arSettings');
+  const arToggleBtn = document.getElementById('arToggleBtn');
+  
+  // Get or create AR stencils instance
+  if (!window.arStencilsInstance) {
+    const canvas = document.getElementById('backgroundCanvas');
+    window.arStencilsInstance = new ARStencils(canvas);
+  }
+  
+  if (arOverlay.style.display === 'flex') {
+    // Turn off AR mode
+    arOverlay.style.display = 'none';
+    arSettings.style.display = 'none';
+    arToggleBtn.querySelector('.btn-text').textContent = 'Start AR';
+    
+    // Stop AR using the class method
+    window.arStencilsInstance.stopAR();
+  } else {
+    // Turn on AR mode
+    arOverlay.style.display = 'flex';
+    arSettings.style.display = 'block';
+    arToggleBtn.querySelector('.btn-text').textContent = 'Exit AR';
+    
+    // Start AR using the class method
+    window.arStencilsInstance.startAR().then(success => {
+      if (!success) {
+        // If AR failed to start, turn it back off
+        toggleAR();
+      }
+    });
+  }
+}
+
 // Export for use in other modules
 window.ARStencils = ARStencils;
-
-
-
