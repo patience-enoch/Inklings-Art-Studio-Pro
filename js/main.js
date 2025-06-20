@@ -57,30 +57,56 @@ class InklingsArtStudioApp {
     this.ctx.fillStyle = this.settings.backgroundColor;
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-    // Configure for high DPI displays
-    this.configureHighDPI();
-    console.log('Canvas context:', this.ctx);
-  }
-
-  configureHighDPI() {
+configureHighDPI() {
+  // Get the device pixel ratio
   const dpr = window.devicePixelRatio || 1;
+
+  // Get the size of the canvas in CSS pixels
   const rect = this.canvas.getBoundingClientRect();
+
+  // Set the canvas width and height taking into account the device pixel ratio
+  if (dpr > 1 && rect.width > 0) {
+    const oldWidth = this.canvas.width;
+    const oldHeight = this.canvas.height;
+
+    // Save current canvas state
+    let imageData;
+    try {
+      imageData = this.ctx.getImageData(0, 0, oldWidth, oldHeight);
+    } catch (e) {
+      console.warn('Could not save canvas state:', e);
+    }
+
+    // Resize canvas
+    this.canvas.width = rect.width * dpr;
+    this.canvas.height = rect.height * dpr;
+
+    // Scale the context
+    this.ctx.scale(dpr, dpr);
+
+    // Restore the canvas state if we have it
+    if (imageData) {
+      try {
+        this.ctx.putImageData(imageData, 0, 0);
+      } catch (e) {
+        console.warn('Could not restore canvas state:', e);
+        // Just clear to white background as fallback
+        this.ctx.fillStyle = this.settings.backgroundColor;
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+      }
+    }
+
+    // Update settings
+    this.settings.canvasWidth = this.canvas.width;
+    this.settings.canvasHeight = this.canvas.height;
+  }
   
-  // Set display size (css pixels)
-  this.canvas.style.width = rect.width + 'px';
-  this.canvas.style.height = rect.height + 'px';
-  
-  // Set actual size in memory (scaled for high DPI)
-  this.canvas.width = rect.width * dpr;
-  this.canvas.height = rect.height * dpr;
-  
-  // Scale all drawing operations by the dpr
-  this.ctx.scale(dpr, dpr);
-  
-  console.log('Canvas configured for high DPI:', dpr);
+  console.log('Canvas dimensions:', this.canvas.width, this.canvas.height);
+  console.log('Canvas CSS dimensions:', this.canvas.clientWidth, this.canvas.clientHeight);
+  console.log('Device pixel ratio:', window.devicePixelRatio);
 }
 
-      // Save current canvas state
+    // Save current canvas state
       const imageData = this.ctx.getImageData(0, 0, oldWidth, oldHeight);
 
       // Resize canvas
@@ -235,19 +261,24 @@ this.canvas.addEventListener('mouseout', this.handleMouseUp.bind(this));
   }
 
   handleMouseDown(e) {
-    if (this.currentMode !== 'draw') return;
-
-    this.isDrawing = true;
-    const pos = Utils.getMousePos(this.canvas, e);
-    this.lastX = pos.x;
-    this.lastY = pos.y;
-
-    // Save state for undo
-    this.saveState();
-
-    // Start drawing
-    this.draw(pos.x, pos.y, false);
+  console.log('handleMouseDown called');
+  if (this.currentMode !== 'draw') {
+    console.log('Not in draw mode:', this.currentMode);
+    return;
   }
+
+  this.isDrawing = true;
+  const pos = Utils.getMousePos(this.canvas, e);
+  console.log('Mouse position:', pos.x, pos.y);
+  this.lastX = pos.x;
+  this.lastY = pos.y;
+
+  // Save state for undo
+  this.saveState();
+
+  // Start drawing
+  this.draw(pos.x, pos.y, false);
+}
 
   handleMouseMove(e) {
     if (this.currentMode !== 'draw' || !this.isDrawing) return;
